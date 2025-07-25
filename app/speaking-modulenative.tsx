@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const profilePic = {
   uri: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -22,13 +23,44 @@ const modules = [
     title: "Advanced Public Speaking Mastery",
     desc: "Deliver compelling presentations to large audiences while handling complex Q&A sessions and unexpected challenges.",
     progress: 0.4,
-    color: "#2563eb",
+    color: "#7c3aed",
   },
 ];
 
 export default function HomeScreen() {
+  const router = useRouter();
   const [selectedModule, setSelectedModule] = useState("Basic");
   const [activeTab, setActiveTab] = useState("Overview");
+
+  const handleModuleSelect = (moduleKey: string) => {
+    setSelectedModule(moduleKey);
+    // Add your navigation logic here
+    console.log(`Selected module: ${moduleKey}`);
+    // Example navigation (uncomment when routes are ready):
+    // if (moduleKey === 'Basic') {
+    //   router.push('/basic-module');
+    // } else if (moduleKey === 'Advanced') {
+    //   router.push('/advanced-module');
+    // }
+  };
+
+  const handleIconPress = (iconName: string) => {
+    console.log(`Icon pressed: ${iconName}`);
+    // Add your navigation logic here
+    // Example navigation (uncomment when routes are ready):
+    // switch(iconName) {
+    //   case 'robot-excited-outline':
+    //     router.push('/ai-assistant');
+    //     break;
+    //   case 'notifications-outline':
+    //     router.push('/notifications');
+    //     break;
+    //   case 'log-out-outline':
+    //     // Handle logout logic
+    //     router.replace('/login');
+    //     break;
+    // }
+  };
 
   return (
     <View className="flex-1 bg-[#0A0A0F] relative">
@@ -61,22 +93,37 @@ export default function HomeScreen() {
           {/* Top Bar */}
           <View className="flex-row justify-between items-center mt-4 mb-2 w-full">
             <View className="flex-row items-center">
-              <Image source={require("../assets/Speaksy.png")} className="w-9 h-9 rounded-full mr-2" />
-              <Text className="text-white font-bold text-2xl">Fluentech</Text>
+              <Image source={require("../assets/Speaksy.png")} className="w-12 h-12 rounded-full mr-0.1" />
+              <Text className="text-white font-bold text-2xl mr-12">Vocaria</Text>
             </View>
 
             <View className="flex-row items-center">
               {[
-                { icon: "robot-excited-outline", lib: MaterialCommunityIcons },
-                { icon: "notifications-outline", lib: Ionicons },
-                { icon: "log-out-outline", lib: Ionicons },
+                { 
+                  icon: "robot-excited-outline", 
+                  lib: MaterialCommunityIcons,
+                  name: 'AI Assistant'
+                },
+                { 
+                  icon: "notifications-outline", 
+                  lib: Ionicons,
+                  name: 'Notifications'
+                },
+                { 
+                  icon: "log-out-outline", 
+                  lib: Ionicons,
+                  name: 'Logout'
+                },
               ].map((item, index) => {
                 const IconLib = item.lib;
                 return (
-                  <TouchableOpacity key={index} className="mx-1 p-1">
-                <IconLib name={item.icon as any} size={22} color="#fff" />
-                </TouchableOpacity>
-
+                  <TouchableOpacity 
+                    key={index} 
+                    className="mx-1 p-1"
+                    onPress={() => handleIconPress(item.icon)}
+                  >
+                    <IconLib name={item.icon as any} size={22} color="#fff" />
+                  </TouchableOpacity>
                 );
               })}
               <View className="items-center ml-2">
@@ -112,9 +159,9 @@ export default function HomeScreen() {
             <Text className="text-white/80 text-base">
               Sharpen your speaking skills through live video practice with real audience feedback.
             </Text>
-            <TouchableOpacity className="mt-4 bg-violet-500 rounded-lg py-2 px-4 w-40 self-start">
+            <View className="mt-4 bg-violet-500 rounded-lg py-2 px-4 w-40 self-start">
               <Text className="text-white text-center font-bold">Start Learning</Text>
-            </TouchableOpacity>
+            </View>
           </View>
 
           {/* Module Cards */}
@@ -137,7 +184,7 @@ export default function HomeScreen() {
               </View>
 
               <TouchableOpacity
-                onPress={() => setSelectedModule(mod.key)}
+                onPress={() => handleModuleSelect(mod.key)}
                 className={`mt-2 py-2 px-4 rounded-lg ${
                   selectedModule === mod.key ? "bg-violet-500" : "bg-violet-400/80"
                 }`}
