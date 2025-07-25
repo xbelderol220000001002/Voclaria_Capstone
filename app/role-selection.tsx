@@ -74,16 +74,16 @@ export default function RoleSelection() {
           </View>
 
           {/* Student Card */}
-          <TouchableOpacity 
-            activeOpacity={0.9}
-            onPress={() => {
-              console.log('Student selected');
-              // Add your navigation or state update logic here
-              // Example: router.push('/student-flow');
-            }}
-          >
-            <BlurView intensity={40} tint="dark" className="rounded-xl p-3 mb-4 bg-[#2c2c46]/50">
-              <View className="flex-row items-center justify-between mb-3">
+          <BlurView intensity={40} tint="dark" className="rounded-xl p-3 mb-4 bg-[#2c2c46]/50">
+            <View className="flex-row items-center justify-between mb-3">
+              <TouchableOpacity 
+                activeOpacity={0.9}
+                onPress={() => {
+                  console.log('Student selected');
+                  // Add your navigation or state update logic here
+                  // Example: router.push('/student-flow');
+                }}
+              >
                 <LinearGradient
                   colors={['#a78bfa', '#7c3aed']}
                   start={{ x: 0, y: 0.5 }}
@@ -95,31 +95,31 @@ export default function RoleSelection() {
                   </Text>
                   <Ionicons name="chevron-forward" size={22} color="#fff" />
                 </LinearGradient>
+              </TouchableOpacity>
 
-                <View className="ml-[2px] bg-[#7035d630] rounded-[16px] w-[44px] h-[44px] items-center justify-center shadow-lg shadow-[#a78bfa3d]">
-                  <Text className="text-[32px] ml-[2]">🎓</Text>
-                </View>
+              <View className="ml-[2px] bg-[#7035d630] rounded-[16px] w-[44px] h-[44px] items-center justify-center shadow-lg shadow-[#a78bfa3d]">
+                <Text className="text-[32px] ml-[2]">🎓</Text>
               </View>
-              {studentFeatures.map((f) => (
-                <View key={f} className="flex-row items-center bg-[#1e1e3cb3] rounded-xl py-2.5 px-5 mb-2.5 border border-white/5">
-                  <View className="w-2.5 h-2.5 rounded-full mr-2.5 bg-[#a78bfa]" />
-                  <Text className="text-[#bfc9e0] text-xs">{f}</Text>
-                </View>
-              ))}
-            </BlurView>
-          </TouchableOpacity>
+            </View>
+            {studentFeatures.map((f) => (
+              <View key={f} className="flex-row items-center bg-[#1e1e3cb3] rounded-xl py-2.5 px-5 mb-2.5 border border-white/5">
+                <View className="w-2.5 h-2.5 rounded-full mr-2.5 bg-[#a78bfa]" />
+                <Text className="text-[#bfc9e0] text-xs">{f}</Text>
+              </View>
+            ))}
+          </BlurView>
 
           {/* Teacher Card */}
-          <TouchableOpacity 
-            activeOpacity={0.9}
-            onPress={() => {
-              console.log('Teacher selected');
-              // Add your navigation or state update logic here
-              // Example: router.push('/teacher-flow');
-            }}
-          >
-            <BlurView intensity={40} tint="dark" className="rounded-xl p-3 mb-4 bg-[#2c2c46]/50">
-              <View className="flex-row items-center justify-between mb-3">
+          <BlurView intensity={40} tint="dark" className="rounded-xl p-3 mb-4 bg-[#2c2c46]/50">
+            <View className="flex-row items-center justify-between mb-3">
+              <TouchableOpacity 
+                activeOpacity={0.9}
+                onPress={() => {
+                  console.log('Teacher selected');
+                  // Add your navigation or state update logic here
+                  // Example: router.push('/teacher-flow');
+                }}
+              >
                 <LinearGradient
                   colors={['#a78bfa', '#7c3aed']}
                   start={{ x: 0, y: 0.5 }}
@@ -131,18 +131,19 @@ export default function RoleSelection() {
                   </Text>
                   <Ionicons name="chevron-forward" size={22} color="#fff" />
                 </LinearGradient>
-                <View className="ml-[2px] bg-[#7035d630] rounded-[16px] w-[42px] h-[42px] items-center justify-center shadow-lg shadow-[#a78bfa3d]">
-                  <Text className="text-[30px] ml-[2]">👩‍💼</Text>
-                </View>
+              </TouchableOpacity>
+              
+              <View className="ml-[2px] bg-[#7035d630] rounded-[16px] w-[42px] h-[42px] items-center justify-center shadow-lg shadow-[#a78bfa3d]">
+                <Text className="text-[30px] ml-[2]">👩‍💼</Text>
               </View>
-              {teacherFeatures.map((f) => (
-                <View key={f} className="flex-row items-center bg-[#1e1e3cb3] rounded-xl py-2.5 px-5 mb-2.5 border border-white/5">
-                  <View className="w-2.5 h-2.5 rounded-full mr-2.5 bg-[#a78bfa]" />
-                  <Text className="text-[#bfc9e0] text-xs">{f}</Text>
-                </View>
-              ))}
-            </BlurView>
-          </TouchableOpacity>
+            </View>
+            {teacherFeatures.map((f) => (
+              <View key={f} className="flex-row items-center bg-[#1e1e3cb3] rounded-xl py-2.5 px-5 mb-2.5 border border-white/5">
+                <View className="w-2.5 h-2.5 rounded-full mr-2.5 bg-[#a78bfa]" />
+                <Text className="text-[#bfc9e0] text-xs">{f}</Text>
+              </View>
+            ))}
+          </BlurView>
         </View>
       </ScrollView>
     </View>
